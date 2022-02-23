@@ -1,0 +1,15 @@
+C:\Users\silyi\Desktop\мирэа\OS\OS_Lab_1\OS_Lab_1\bin\Debug\net6.0\OS_Lab_1.exe
+C:\Users\silyi\Desktop\мирэа\OS\OS_Lab_1\OS_Lab_1\bin\Debug\net6.0\OS_Lab_1.deps.json
+C:\Users\silyi\Desktop\мирэа\OS\OS_Lab_1\OS_Lab_1\bin\Debug\net6.0\OS_Lab_1.runtimeconfig.json
+C:\Users\silyi\Desktop\мирэа\OS\OS_Lab_1\OS_Lab_1\bin\Debug\net6.0\OS_Lab_1.dll
+C:\Users\silyi\Desktop\мирэа\OS\OS_Lab_1\OS_Lab_1\bin\Debug\net6.0\ref\OS_Lab_1.dll
+C:\Users\silyi\Desktop\мирэа\OS\OS_Lab_1\OS_Lab_1\bin\Debug\net6.0\OS_Lab_1.pdb
+C:\Users\silyi\Desktop\мирэа\OS\OS_Lab_1\OS_Lab_1\obj\Debug\net6.0\OS_Lab_1.csproj.AssemblyReference.cache
+C:\Users\silyi\Desktop\мирэа\OS\OS_Lab_1\OS_Lab_1\obj\Debug\net6.0\OS_Lab_1.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\silyi\Desktop\мирэа\OS\OS_Lab_1\OS_Lab_1\obj\Debug\net6.0\OS_Lab_1.AssemblyInfoInputs.cache
+C:\Users\silyi\Desktop\мирэа\OS\OS_Lab_1\OS_Lab_1\obj\Debug\net6.0\OS_Lab_1.AssemblyInfo.cs
+C:\Users\silyi\Desktop\мирэа\OS\OS_Lab_1\OS_Lab_1\obj\Debug\net6.0\OS_Lab_1.csproj.CoreCompileInputs.cache
+C:\Users\silyi\Desktop\мирэа\OS\OS_Lab_1\OS_Lab_1\obj\Debug\net6.0\OS_Lab_1.dll
+C:\Users\silyi\Desktop\мирэа\OS\OS_Lab_1\OS_Lab_1\obj\Debug\net6.0\ref\OS_Lab_1.dll
+C:\Users\silyi\Desktop\мирэа\OS\OS_Lab_1\OS_Lab_1\obj\Debug\net6.0\OS_Lab_1.pdb
+C:\Users\silyi\Desktop\мирэа\OS\OS_Lab_1\OS_Lab_1\obj\Debug\net6.0\OS_Lab_1.genruntimeconfig.cache
