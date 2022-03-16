@@ -1,7 +1,9 @@
-﻿using System.Text.Json;
+using System.Text.Json;
 using System.Xml;
 using System.Xml.Linq;
 using System.IO.Compression;
+using System;
+using System.IO;
 
 static void Compress(string sourceFile, string compressedFile)
 {
@@ -34,7 +36,10 @@ static void Decompress(string compressedFile, string targetFile)
     }
 }
 
+Menu:
+
 DriveInfo[] drives = DriveInfo.GetDrives();
+
 
 Console.WriteLine("MENU\n\n");
 Console.WriteLine("1. INFO\n");
@@ -43,7 +48,6 @@ Console.WriteLine("3. JSON\n");
 Console.WriteLine("4. XML\n");
 Console.WriteLine("5. ZIP\n\n");
 
-Menu:
 
 var menuArgument = Console.ReadLine();
 
@@ -64,11 +68,12 @@ switch (Convert.ToInt32(menuArgument))
 
             Console.WriteLine();
         }
-        break;
+        goto Menu;
+        
     case 2:
         Console.WriteLine("\nFILE:\n\nВведите строку:\n\n");
         var fileString = Console.ReadLine();
-        string pathToFile = @"C:\new_file.txt";
+        string pathToFile = @"D:\Documents\test\new_file.txt";
         File.WriteAllText(pathToFile, fileString);
 
         using (FileStream fstream = File.OpenRead(pathToFile))
@@ -79,9 +84,14 @@ switch (Convert.ToInt32(menuArgument))
             Console.WriteLine($"Текст из файла: {textFromFile}");
         }
 
+        Console.WriteLine("\n[Подтвердите удаление файла]");
+        Console.ReadLine();
+
+
         File.Delete(pathToFile);
         Console.WriteLine("\nФайл удален");
-        break;
+        goto Menu;
+        
     case 3:
         Console.WriteLine("Введите имя:");
         string name = Console.ReadLine();
@@ -94,18 +104,23 @@ switch (Convert.ToInt32(menuArgument))
         var restoredPerson = JsonSerializer.Deserialize<Person>(json);
         Console.WriteLine(restoredPerson.Name);
 
-        using (FileStream fs = new FileStream("user.json", FileMode.OpenOrCreate))
+        using (FileStream fs = new FileStream(@"D:\Documents\test\user.json", FileMode.OpenOrCreate))
         {
             await JsonSerializer.SerializeAsync<Person>(fs, tom);
             Console.WriteLine("Data has been saved to file");
         }
 
-        using (FileStream fs = new FileStream("user.json", FileMode.OpenOrCreate))
+        using (FileStream fs = new FileStream(@"D:\Documents\test\user.json", FileMode.OpenOrCreate))
         {
             Console.WriteLine($"Name: {restoredPerson.Name}  Id: {restoredPerson.Id}");
         }
-        File.Delete("user.json");
-        break;
+
+        Console.WriteLine("\n[Подтвердите удаление файла]");
+        Console.ReadLine();
+        File.Delete(@"D:\Documents\test\user.json");
+        Console.WriteLine("\nФайл удален");
+        goto Menu;
+        
     case 4:
         Console.WriteLine("\nUSER1:\nИмя:");
         string nameXml1 = Console.ReadLine();
@@ -115,7 +130,7 @@ switch (Convert.ToInt32(menuArgument))
         string nameXml2 = Console.ReadLine();
         Console.WriteLine("Id:");
         int idXml2 = Convert.ToInt32(Console.ReadLine());
-        
+
         XDocument xdoc = new XDocument();
 
         XElement person1 = new XElement("person");
@@ -129,53 +144,60 @@ switch (Convert.ToInt32(menuArgument))
         XElement person2IdAttr = new XElement("Id", idXml2);
         person2.Add(person2NameAttr);
         person2.Add(person2IdAttr);
-        
+
         XElement people = new XElement("people");
 
         people.Add(person1);
         people.Add(person2);
 
         xdoc.Add(people);
-        xdoc.Save("people.xml");
+        xdoc.Save(@"D:\Documents\test\people.xml");
 
         XmlDocument xDoc = new XmlDocument();
-        xDoc.Load("people.xml");
+        xDoc.Load(@"D:\Documents\test\people.xml");
 
         XmlElement xRoot = xDoc.DocumentElement;
 
         Console.WriteLine("\nXML FILE:\n");
 
-        foreach(XmlNode xnode in xRoot)
+        foreach (XmlNode xnode in xRoot)
         {
-            if(xnode.Attributes.Count > 0)
+            if (xnode.Attributes.Count > 0)
             {
                 XmlNode attr = xnode.Attributes.GetNamedItem("Name");
                 if (attr != null) Console.WriteLine(attr.Value);
             }
 
-            foreach(XmlNode childnode in xnode.ChildNodes)
+            foreach (XmlNode childnode in xnode.ChildNodes)
             {
-                if(childnode.Name == "Name") Console.WriteLine($"Name: {childnode.InnerText}");
+                if (childnode.Name == "Name") Console.WriteLine($"Name: {childnode.InnerText}");
                 if (childnode.Name == "Id") Console.WriteLine($"Id: {childnode.InnerText}");
             }
         }
 
-        File.Delete("people.xml");
-
-        break;
+        Console.WriteLine("\n[Подтвердите удаление файла]");
+        Console.ReadLine();
+        File.Delete(@"D:\Documents\test\people.xml");
+        Console.WriteLine("\nФайл удален");
+        goto Menu;
+        
     case 5:
 
         Console.WriteLine("\nFILE NAME:");
-        string sourceFile = Console.ReadLine(); 
-        string compressedFile = "book.gz"; 
-        string targetFile = "book_new.pdf"; 
+        string sourceFile = Console.ReadLine();
+        string compressedFile = "book.gz";
+        string targetFile = "book_new.pdf";
 
         Compress(sourceFile, compressedFile);
+
+        Console.WriteLine("\n[Подтвердите восстановление файла]");
+        Console.ReadLine();
+
         Decompress(compressedFile, targetFile);
 
         Console.ReadLine();
-
-        break;
+        goto Menu;
+        
     default:
         goto Menu;
 }
@@ -185,4 +207,3 @@ internal class Person
     public string? Name { get; set; }
     public int Id { get; set; }
 }
-
